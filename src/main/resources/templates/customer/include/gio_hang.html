@@ -1,0 +1,60 @@
+<div th:fragment="mycart">
+	<div class="container">
+		<div style="padding-top: 15px; padding-bottom: 15px; color: #ee4d2d;">
+			<h2>Giỏ Hàng ([[${session.size}]])</h2>
+		</div>
+		<div class="rows">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th></th>
+						<th style="text-align: center;">Tên sản phẩm</th>
+						<th style="text-align: center;">Price</th>
+						<th style="text-align: center;">Quantity</th>
+						<th style="text-align: center;">Tổng tiền</th>
+						<th style="text-align: center;">Thao tác</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<div th:each="item : ${session.cart.getItems()}">
+						<tr>
+							<td><img th:src="@{img/{id}a.png (id = ${item.product.getId()})}" width="150px"
+									height="150px"></td>
+							<td style="text-align: center; vertical-align: middle;"
+								th:text="${item.product.tieu_de}"></td>
+							<td style="text-align: center; vertical-align: middle;" th:text="${item.price}"></td>
+							<td style="text-align: center; vertical-align: middle;">
+								<button style="padding: 0px;"><a class="buttom_congtru"
+										th:href="@{/process?num=-1&id={id}(id=${item.product.id})}">-</a></button>
+								<input type="number" readonly th:value="${item.quantity}" style="text-align: center;">
+								<button style="padding: 0px;"><a class="buttom_congtru"
+										th:href="@{/process?num=1&id={id}(id=${item.product.id})}">+</a></button>
+							</td>
+							<td style="text-align: center; vertical-align: middle;"
+								th:text="${item.price*item.quantity}">
+
+							</td>
+							<td style="text-align: center; vertical-align: middle;">
+								<form th:action="@{/process1?id={id}(id=${item.product.getId()})}" method="post">
+									<input type="submit" style="max-width: 70px;" class="btn btn-primary btn-sm"
+										value="xóa">
+								</form>
+							</td>
+						</tr>
+						</form>
+					</div>
+
+
+				</tbody>
+			</table>
+		</div>
+		<p style="font-size: 20px;">Tổng tiền: <a style="font-size: 20px; color: red;" th:text="${session.cart.getTotalMoney()}"></a></p>
+		<hr />
+		<div >
+			<form th:action="@{/thanhtoan}" th:method="POST">
+				<input class="btn btn-primary btn-sm" type="submit" value="Mua Hang" style="display: block; font-size: 20px; margin-right: 15px; margin-bottom: 20px;">
+			</form>
+		</div>
+	</div>
+</div>

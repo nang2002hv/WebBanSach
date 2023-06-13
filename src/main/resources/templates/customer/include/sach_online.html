@@ -1,0 +1,86 @@
+<div th:fragment="sach_online">
+    <div class="container">
+        <form th:action="@{/sach_online}" th:method="GET">
+            <div class="top-pro-list">
+                <div class="filter_bar-item">
+                    <span>Thể loại :</i></span>
+                    <select class="list-unstyled" name="brand">
+                        <option th:value="${brand}" style="display:none;" th:text=${brandSet}></option>
+                        <option value="">Tất cả</option>
+                        <div th:each="category : ${session.categorys}">
+                            <option th:value="${category.name}">[[${category.name}]]</option>
+                        </div>
+                    </select>
+                </div>
+
+                <div class="filter_bar-item">
+                    <span>Số trang :</i></span>
+                    <select class="list-unstyled" name="page">
+                        <option th:value="${page}" style="display:none;" th:text=${pageSet}></option>
+                        <option value="">Tất cả</option>
+                        <option value="5-10">50 trang - 100 trang</option>
+                        <option value="10-20">100 trang - 200 trang</option>
+                        <option value="20-30">200 trang - 300 trang</option>
+                        <option value="30-50">300 trang - 500 trang</option>
+                        <option value="over-50">Trên 500 trang</option>
+                    </select>
+                </div>
+                <div class="filter_bar-item"><span>Giá <i class="fas fa-sort-down"></i></span></div>
+                <div class="filter_bar-item"><span>Số lượng bán <i class="fas fa-sort-down"></i></span></div>
+                <div class="filter_bar-item"><span>Tác Giả <i class="fas fa-sort-down"></i></span></div>
+                <div class="filter_bar-item">
+                    <input type="text" name="search" placeholder="nhập sản phẩm cần tìm kiếm"
+                        style="height: 25px; padding-left: 35px; width: 250px; text-align: center; vertical-align: middle;" />
+                </div>
+                <button type="submit" style="padding-left: 5%;">
+
+                    <i class="fas fa-search" style="color: #2616a2; font-size: 30px;"></i>
+                </button>
+            </div>
+
+        </form>
+        <div class="product-list">
+            <div class="col-lg-2" th:each="product : ${products}" style="margin-bottom: 15px;">
+                <a th:href="@{/sach_detail?id={id}(id=${product.id})}">
+                    <div class="images-container">
+                        <div class="product-hover">
+                            <span class="product-image-container" style="position: relative; width: 300px;">
+                                <span class="product-image-wrapper" style="padding-bottom: 127.33333333333%;">
+                                    <img class="product-image-photo" th:src="@{img/{id}a.png (id = ${product.id})}"
+                                        max-width="300" max-height="382">
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="hidenitem">
+                        <p><a href=""><i class="fa fa-search"></i></a></p>
+                        <p><a href=""><i class="fa fa-heart"></i></a></p>
+                        <p><a href=""><i class="fa fa-shopping-basket"></i></a></p>
+                    </div>
+                    <div class="product details product-item-details products-textlink clearfix">
+                        <h2 class="product-name product-item-name">
+                            <a class="product-item-link" href="" th:title="${product.tieu_de}"
+                                th:text="${product.tieu_de}">
+                            </a>
+                        </h2>
+                        <div class="price-box price-final_price">
+                            <span class="price" style="color: red;">
+                                [[${product.getGia()}]]</span>
+                        </div>
+                    </div>
+                    <div class="progress"><span class="progress-value">đã bán [[${product.so_luong_ban}]] </span>
+
+                        <div class="progress-bar" role="progressbar"
+                            th:style="'width: ' + (${product.so_luong_ban} / ${product.so_luong_sach} * 100) + '%;'"
+                            th:attr="aria-valuenow=${product.so_luong_ban} / ${product.so_luong_sach} * 100"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

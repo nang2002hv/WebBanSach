@@ -1,0 +1,71 @@
+<div th:fragment="thongtin">
+    <div class="container">
+        <div class="_66hYBa">
+            <h1 class="SbCTde">Hồ sơ của tôi</h1>
+            <div class="zptdmA">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+            <form th:action="@{/getinformation}" th:method="post"  th:object="${customer}">
+                <table style="border-collapse: collapse;">
+                    <tr class="espR83">
+                        <td class="Tmj5Z7">Tên đăng nhập</td>
+                        <td class="Tmj5Z6"><input type="text" name="user_name" th:value="${session.customer_login.user_name}" disabled></td>
+                    </tr>
+                    <tr class="espR83">
+                        <td class="Tmj5Z7">Mật Khẩu</td>
+                        <td class="Tmj5Z6"><input type="password" name="password" th:value="${session.customer_login.password}" ></td>
+                    </tr>
+                    <tr class="espR83">
+                        <td class="Tmj5Z7">Họ và tên</td>
+                        <td class="Tmj5Z6"><input type="text" name="user" th:value="${session.customer_login.user}"></td>
+                    </tr>
+                    <tr class="espR83">
+                        <td class="Tmj5Z7">Email</td>
+                        <td class="Tmj5Z6"><input type="text" name="email" th:value="${session.customer_login.email}"></td>
+                    </tr>
+                    <tr class="espR83">
+                        <td class="Tmj5Z7">Địa chỉ</td>
+                        <td class="Tmj5Z6"><input type="text" name="diachi" th:value="${session.customer_login.diachi}"></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Lưu" id="button_luu">
+            </form>
+        </div>
+        <div class="_66hYBa">
+            <div class="zptdmA">Danh sách đơn hàng</div>
+        </div>
+        <div>
+            <div class="rows">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th style="text-align: center;">Tên sản phẩm</th>
+                            <th style="text-align: center;">Price</th>
+                            <th style="text-align: center;">Quantity</th>
+                            <th style="text-align: center;">Tổng tiền</th>
+                            <th style="text-align: center;">Ngày mua</th>
+                            <th style="text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        <tr th:each="ordermanagement : ${orderManagements}">
+                            <td><a th:href="@{/sach_detail?id={id}(id=${ordermanagement.orderDetail.pid})}"><img  th:src="@{img/{id}a.png (id = ${ordermanagement.orderDetail.pid})}" width="150px"
+                                height="150px"></a></td>
+                            <td th:text="${ordermanagement.product.tieu_de}"></td>
+                            <td th:text="${ordermanagement.orderDetail.price}"></td>
+                            <td th:text="${ordermanagement.orderDetail.quantity}"></td>
+                            <td th:text="${ordermanagement.orderDetail.price * ordermanagement.orderDetail.quantity}"></td>
+                            <td th:text="${ordermanagement.order.date}"></td>
+                            <td>
+                                <a th:href="@{/deleteordermanagement1?id={id}(id=${ordermanagement.orderDetail.id})}"
+                                    class="btn btn-danger">Hủy đơn</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

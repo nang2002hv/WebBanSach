@@ -1,0 +1,100 @@
+<div th:fragment="header">
+	<div id="header">
+		<div id="header-top">
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-6" id="header-text">
+						<a>Trác Năng</a><b>Mọi thức bắt đầu bằng khó khăn</b>
+					</div>
+					<div class="col-md-6">
+						<nav id="header-nav-top">
+							<ul class="list-inline pull-right" id="headermenu" style="border-right: 1px solid slategray;">
+								<li>
+									<div th:if="${ktlogin != 1}">
+										<a th:href="@{/severlogin}"><i class="fa fa-unlock"></i>
+										Login</a>
+									</div> 
+								</li>
+								<li>
+									<div th:if="${ktlogin == 1}">
+										<a href=""><i class="fa fa-user"></i> <span
+											th:text="${session.customer_login.user}"></span> <i class="fa fa-caret-down"></i></a>
+										<ul id="header-submenu">
+											<li><a th:href="@{/information}">Thông tin</a></li>
+											<li><a th:href="@{/shopping_cart}">Giỏ hàng</a></li>
+											<li><a th:href="@{/checkout}">Thoát</a></li>
+										</ul>
+									</div>
+								</li>
+								
+
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row" id="header-main">
+				<div class="col-md-5">
+					<form class="form-inline">
+						<div class="form-group" style="display: inline-block;">
+							<label> <select name="category" class="form-control">
+									<option>All Category</option>
+									<div th:each ="category : ${session.categorys}">
+										<option>[[${category.name}]]</option>
+									</div>
+							</select>
+							</label> <input type="text" name="keywork"
+								placeholder="bạn muốn tìm sản phẩm gì" class="form-control">
+							<button type="submit" class="btn btn-default">
+								<i class="fa fa-search"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-4">
+					<a href=""> <img th:src="@{img/az1.png}">
+					</a>
+				</div>
+				<div class="col-md-3" id="header-right">
+					<div class="pull-right">
+						<div class="pull-left">
+							<i class="fas fa-phone-office" style="color: #c22433;"></i>
+						</div>
+						<div class="pull-right">
+							<p id="hotline">HOTLINE</p>
+							<p>0384210283</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menunav">
+		<div class="container">
+			<nav>
+				<div class="home pull-left">
+					<a th:href="@{/client}">Trang chủ</a>
+				</div>
+				<!--menu main-->
+				<ul id="menu-main">
+					<li><a th:href="@{/sach_online}">Sách</a></li>
+					<li><a href="">Giới thiệu</a></li>
+					<li><a href="">Khuyến mại</a></li>
+					<li><a href="">Tin tức</a></li>
+					<li><a href="">Liên hệ</a></li>
+				</ul>
+				<!-- end menu main-->
+
+				<!--Shopping-->
+				<ul class="pull-right" id="main-shopping">
+					<li><a th:href="@{/shopping_cart}"><i class="fa fa-shopping-basket"></i> GIỎ HÀNG </a></li>
+				</ul>
+				<!--end Shopping-->
+			</nav>
+		</div>
+	</div>
+</div>
+</div>

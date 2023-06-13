@@ -1,0 +1,158 @@
+<div th:fragment="addProduct">
+    <div class="container1" style="padding-left: 20%;">
+        <h3>Sách</h3>
+        <div >
+            <form th:action="@{/qlsp}" th:object="${product}" id="saveForm" th:method="post" enctype="multipart/form-data">
+                <div class="row" style="width: 100%;">
+                    <div class="col-lg-5">
+                        <input type="hidden" name="id" th:value="${product.id}">
+                        <div class="form-group">
+                            <div >
+                                <label for="name">Tên</label>
+                                <input type="text" class="form-control" name="tieu_de" th:value="${product.tieu_de}">
+                                <br>
+                                <span style="color: red; font-size: 15px;" th:text="${loi.error_tieu_de}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div >
+                                <label for="author">Tác Giả</label>
+                                <input type="text" class="form-control" name="tac_gia" th:value="${product.tac_gia}">
+                                <br>
+                                <span style="color: red; font-size: 15px;" th:text="${loi.error_tac_gia}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Thể Loại</label>
+                            <select class="form-control" id="category" name="danh_muc">
+                                <option th:value="${product.danh_muc}" th:text="${product.danh_muc}"></option>
+                                <div th:each ="category : ${session.categorys}">
+                                    <div th:if="${product.danh_muc != category.name}">
+                                        <option  th:value="${category.id}" th:text="${category.name}"></option>
+                                    </div>
+                                </div>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Nhà Xuất Bản</label>
+                        <select class="form-control" id="issuer" name="nha_xuat_ban">
+                            <option th:value="${product.nha_xuat_ban}" th:text="${product.nha_xuat_ban}"></option>
+                            <div th:each ="issuer : ${session.issuers}">
+                                <div th:if="${product.nha_xuat_ban != issuer.name_issuer}">
+                                    <option  th:value="${issuer.id}" th:text="${issuer.name_issuer}"></option>
+                                </div>
+                            </div>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <div >
+                                <label for="date">Ngày Phát Hành</label>
+                                <input type="date" class="form-control" name="ngay_phat_hanh" th:value="${product.ngay_phat_hanh}">
+                                <br>
+                                <span style="color: red; font-size: 15px;" th:text="${loi.error_ngay_xuat_ban}"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div >
+                                <label for="pagenumber">Số Trang</label>
+                                <input type="number" class="form-control" name="so_trang" th:value="${product.so_trang}"
+                                 >
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <div >
+                                <label for="description">Mô tả</label>
+                                <textarea class="form-control" rows="5" name="mo_ta" th:text="${product.mo_ta}"
+                                 ></textarea>
+                            </div>
+                            <div th:if="${condition} == 1">
+                                <label for="description">Mô tả</label>
+                                <textarea class="form-control" rows="5" name="mo_ta" th:text="${product.mo_ta}"
+                                 ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <div >
+                                <label for="sold">Đã Bán</label>
+                                <input type="number" class="form-control" name="so_luong_ban" th:value="${product.so_luong_ban}"
+                                >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div >
+                                <label for="sold">Số lượng sách</label>
+                                <input type="number" class="form-control" name="so_luong_sach"
+                                th:value="${product.so_luong_sach}"  >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div >
+                                <label for="price">Giá Bán Ra</label>
+                                <input type="text" class="form-control" name="gia" id="price" th:value="${product.gia}"
+                                 >
+                            </div>
+                        </div>
+                        <p>Hình Ảnh</p>
+                        <div  >
+                            <div class="custom-file">
+                                <input type="file"  class="custom-file-input" name="productImage" accept="image/jpeg, image/png"  id="productImage"/>
+                                <label class="custom-file-label" for="productImage">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <img src="#" id="imgPreview" height="200px" width="200px" name="productImage"
+                            th:src="@{img/{id}a.png (id = ${product.id})}" style="margin-top: 20px" alt=" ">
+                        </div>
+    
+                    </div>
+                </div>
+                <br>
+                <span style="color: red; font-size: 15px;" th:text="${loi.error_trung_lap}"></span>
+                <div 
+                    style="display:flex; justify-content: flex-end; padding-right: 20%; padding-top: 15px; border-top: 1px solid #ddd7d7;">
+                    <button type="button" class="btn btn-primary" onclick="confirmSave()">ADD BOOK</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script>
+
+        function confirmSave() {
+            var confirmation = confirm("Bạn có muốn thêm không?");
+            if (confirmation) {
+                document.getElementById("saveForm").submit();
+            } else {
+                return false;
+            }
+        }
+
+        function readURL(input) {
+            if (input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgPreview').attr('src', e.target.result).width(200).height(200);
+                }
+                reader.readAsDataURL(input.files[0])
+            }
+        }
+        $('#productImage').change(function () {
+            readURL(this);
+        });
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+</div>

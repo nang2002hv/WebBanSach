@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" th:href="@{css/admin2.css}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div style="display: flex">
+        <div class="header" style="min-width: 15%; max-width: 15%">
+            <span style="display: flex;align-items: center;">
+                <i class="fas fa-tools" style="color: #aa6627 ; padding-left: 15px; font-size: 25px;"></i><b style="font-size: 30px;
+                    color: #DC5324;"> ADMIN</b>
+            </span>
+            <ul id="main-menu">
+                <li style="padding-bottom: 15px; padding-top: 20px;"><i class="fas fa-box-open"
+                        style="color: #ffffff; font-size: 20px; padding-right: 10px;"></i><a
+                        style="color: white; text-decoration: none; font-size: 15px;" th:href="@{/qlsp}">Quản lý sản
+                        phẩm </a>
+                </li>
+                <li style="padding-bottom: 15px;"><i class="far fa-user"
+                        style="color: #ffffff; font-size: 20px; padding-right: 10px;"></i><a
+                        style="color: white; text-decoration: none; font-size: 15px;" th:href="@{/allcustomer}">Quản lý
+                        người dùng </a>
+                </li>
+                <li style="padding-bottom: 15px;"><i  class="fal fa-box-full"
+                        style="color: #ffffff; font-size: 20px; padding-right: 10px;"></i><a
+                        style="color: white; text-decoration: none; font-size: 15px;" th:href="@{/ordermanagement}">Quản lý
+                        đơn hàng </a>
+                </li>
+                <li style="padding-bottom: 15px;"><i  class="fal fa-box-full"
+                    style="color: #ffffff; font-size: 20px; padding-right: 10px;"></i><a
+                    style="color: white; text-decoration: none; font-size: 15px;" th:href="@{/severlogin}"> Thoát </a>
+            </li>
+            </ul>
+        </div>
+        <div>
+            <div th:switch="${isadmin}" class="admin-content-center">
+                <div th:case="1">
+                    <div th:replace="admin/themsach :: addProduct"></div>
+                </div>
+                <div th:case="2">
+                    <div th:replace="admin/xemsach :: viewProduct"></div>
+                </div>
+                <div th:case="3">
+                    <div th:replace="admin/xoasach :: deleteSach"></div>
+                </div>
+                <div th:case="*">
+                    <div th:replace="admin/quanlysanpham :: allproduct"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

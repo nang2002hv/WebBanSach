@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+	<link rel="stylesheet" type="text/css"
+	th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" th:href="@{css/styles2.css}">
+	<script th:src="@{js/script.js}"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sách Online</title>
+</head>
+<body>
+    <div th:insert="customer/include/header :: header"></div>
+	<div th:switch="${isLogin}">
+		<div th:case="0">
+			<div th:replace="customer/include/dang_ky :: register"></div>
+		</div>
+		<div th:case="1">
+			<div th:replace="customer/include/dang_nhap :: login"></div>
+		</div>
+		<div th:case="2">
+			<div th:replace="customer/include/sach_online :: sach_online"></div>
+		</div>
+		<div th:case="3">
+			<div th:replace="customer/include/sach_detail:: sachdetail"></div>
+		</div>
+		<div th:case="4">
+			<div th:replace="customer/include/gio_hang :: mycart"></div>
+		</div>
+		<div th:case="5">
+			<div th:replace="customer/include/thongtin:: thongtin"></div>
+		</div>
+		<div th:case="*">
+			<div th:replace="customer/include/maincontent :: maincontent"></div>
+		</div>
+	</div>
+	<div th:insert="customer/include/footer :: footer"></div>
+</body>
+</html>

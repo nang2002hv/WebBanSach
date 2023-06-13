@@ -1,0 +1,50 @@
+.header {
+    background-color: #1F262D;
+    padding-bottom: 100px;
+    width: 35%;
+}
+.container1{
+    min-width: 1500px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+#main-menu li{
+    cursor: pointer;
+    padding-left: 15px;
+    list-style: none;
+    position: relative;
+}
+#main-menu ul.sub-menu{
+    font-size: 15px;
+    list-style: none;
+    display: none;
+    color :white;
+    position: absolute;
+    padding: 0px;
+    top: 100%; 
+    left: 0; 
+    width: 100%;
+}
+#main-menu li:hover > ul.sub-menu{
+    display: block;
+}
+
+
+.header ul li a{
+    color: white;
+}
+
+.font_tr_th tr td {
+    font-size: 15px;
+}
+.font_tr_th tr td a{
+    font-size: 15px;
+}
+.font_tr_th tr th {
+    font-size: 15px;
+}
+
+input.form-control{
+    min-width: 300px;
+} 

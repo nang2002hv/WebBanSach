@@ -1,0 +1,150 @@
+<div th:fragment="sachdetail" style="background-color: #d6d2d2;">
+    <div class="container">
+        <div style="background-color: white; padding: 10px;">
+            <div style="padding: 0px 0px;">
+                <form th:object="${product}">
+                    <div style="display: inline-block; width: 100%;">
+                        <div class="main-prodcut">
+                            <div class="col-lg-4 img-product">
+                                <img th:src="@{img/{id}a.png (id = ${product.id})}">
+                            </div>
+                            <div class="col-lg-7 product-content">
+                                <span class="product-title">[[${product.tieu_de}]]</span>
+                                <br>
+
+                                <span style="display: block;">Nhà xuất bản: [[${product.nha_xuat_ban}]]</span>
+                                <br>
+
+                                <span style="display: block;">Tác giả : [[${product.tac_gia}]]</span>
+                                <br>
+                                <span class="price_product" style="display: block;">[[${product.gia}]]</span>
+                                <br>
+                                <a type="submit" title="Thêm vào giỏ hàng"
+                                    th:href="@{/shopping_cart?id={id}(id=${product.id})}" class="btn-cart" style="">
+                                    <i class="fas fa-shopping-cart" style="color: #ffffff;"></i>
+                                    <span>Thêm vào giỏ hàng</span>
+                                </a>
+                                <div class="product-view-event-cart">
+                                    <div class="event-cart-more-title">Ưu đãi liên quan</div>
+                                    <div class="fhs-info-promo-icon process-color" id="fhs-info-promo-0">
+                                        <div><img
+                                                src="https://nhasachquangloi.vn/pub/media/wysiwyg/alothemes/static/ico_promo_sp.svg">
+                                        </div>
+                                        <div>Hiện tại chưa có chương trình giảm giá</div>
+                                    </div>
+                                    <div class="fhs-info-promo-icon process-color" id="fhs-info-promo-1">
+                                        <div><img
+                                                src="https://nhasachquangloi.vn/pub/media/wysiwyg/alothemes/static/ico_promo_sp.svg">
+                                        </div>
+                                        <div>Chưa có khuyến mãi dành cho vận chuyển</div>
+                                    </div>
+                                </div>
+                                <div class="product-view-event-cart">
+                                    <div class="custom-html">
+                                        <h3 class="title-social">Chia sẻ</h3>
+                                        <ul class="icon-share list-inline">
+                                            <li class="facebook">
+                                                <i class="fab fa-facebook-f" style="color: #8b8c8d;"></i>
+                                            </li>
+                                            <li class="twitter">
+                                                <i class="fab fa-twitter"></i>
+                                            </li>
+                                            <li class="pinterest">
+                                                <i class="fab fa-pinterest"></i>
+                                            </li>
+                                            <li class="linkedin">
+                                                <i class="fab fa-linkedin-in"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="height: 10px; background-color: #d6d2d2; width: 100%;"></div>
+        <div style="background-color: white; padding: 10px;">
+            <div style="margin-top: 10px 0px;">
+                <div style="padding: 0px 26px"><b style="padding :0px 0px; font-size: 16px; text-transform: capitalize;
+                font-weight: 700; ">MÔ TẢ SẢN PHẨM</b></div>
+                <br>
+                <div style="padding-left: 26px; padding-top: 5px;">
+                    <p>[[${product.mo_ta}]]</p>
+                </div>
+            </div>
+        </div>
+        <div style="height: 20px; background-color: #d6d2d2; width: 100%;"></div>
+        <div style="background-color: white; padding: 10px;">
+            <div style="margin-top: 10px 0px;">
+                <div style="padding: 0px 26px"><b style="padding :0px 0px; font-size: 16px; text-transform: capitalize;
+                    font-weight: 700; ">BÌNH LUẬN TRUYỆN</b></div>
+                <br>
+            </div>
+            <form th:action="@{/comments}">
+                <div style="display: flex; width: 100%; padding: 10px;">
+                    <img th:src="@{img/user.png}" height="50px" width="50px">
+                    <input placeholder="Bình luận của bạn" class="form-control-1" name="comment">
+                    </input>
+                </div>
+                <div style="display: flex; padding-left:10px ; width: 100%;">
+                    <div style="display: flex;  justify-content: center; align-items: center;">
+                        <span>Đánh giá :</span>
+                    </div>
+                    <div class="stars">
+                        <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                        <label class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                        <label class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                        <label class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                        <label class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                        <label class="star star-1" for="star-1"></label>
+                    </div>
+                    <div th:if="${ktlogin == 1}">
+                        <input type="hidden" name ="id_user_comments" th:value ="${session.customer_login.id}">
+                    </div>
+                    <input type="hidden" name ="id_product_comment" th:value ="${product.id}">
+                    <div style="display: flex;  justify-content: center; align-items: center;padding-left: 37%;">
+                        <button type="submit" style="background-color: #365899; padding: 3px 5px;">
+                            <span style="font-size: 14px; color: white;">Gửi bình luận</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div style="padding-top: 20px; padding-left: 10px;">
+                <div th:each="comment : ${comments}" style="display: flex; padding-bottom: 10px">
+                    <div>
+                        <img th:src="@{img/user.png}" height="50px" width="50px">
+                    </div>
+                    <div style= "padding-left: 10px; align-items: center;">
+                        <div style="display: inline-block; min-width: 150px;">
+                            <div><p style="font-weight: bold;" th:text="${comment.user}"></p></div>
+                            <div class="star-a">
+                                <div class="starsa">
+                                    <svg width="10px" height="10px" viewBox="0 0 940.688 940.688">
+                                        <path d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="10px" height="10px" viewBox="0 0 940.688 940.688">
+                                        <path d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg><svg width="10px" height="10px" viewBox="0 0 940.688 940.688">
+                                        <path d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg><svg width="10px" height="10px" viewBox="0 0 940.688 940.688">
+                                        <path d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg><svg width="10px" height="10px" viewBox="0 0 940.688 940.688">
+                                        <path d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <div class="overlay" th:style="'width: ' + ((5-${comment.star})* 20) + '%;'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p th:text="${comment.comment}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

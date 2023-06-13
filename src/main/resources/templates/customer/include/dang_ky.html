@@ -1,0 +1,42 @@
+<div th:fragment="register">
+	<div class="container">
+		<div id="wrapper">
+			<form th:object="${customer}" th:action="@{/ktregister}" id="form-login" method="POST">
+				<h1 class="form-heading">ĐĂNG KÝ</h1>
+				<div class="form-group">
+					<i class="far fa-user"></i>
+					<input type="text" name="user_name" class="form-input"  placeholder="Tên đăng nhập">
+					<span id="phoneError" class="error"></span>
+				</div>
+				<div class="form-group">
+					<i class="fas fa-key"></i>
+					<input type="password" name="password" class="form-input" placeholder="Mật khẩu">
+					<br>
+					<span id="passwordError" class="error"></span>
+				</div>
+				<div class="form-group">
+					<i class="far fa-user"></i> <input type="text" class="form-input" name="user"
+						placeholder="Họ tên" >
+					<br>
+					<span id="nameError" class="error"></span>
+				</div>
+				<div class="form-group">
+					<i class="fas fa-envelope"></i>
+					<input type="text" name="email" class="form-input" placeholder="@gmail.com">
+					<br>
+					<span id="emailError" class="error"></span>
+				</div>
+				<div class="form-group">
+					<i class="fas fa-map-marker-alt"></i>
+					<input name="diachi" type="text" class="form-input" placeholder="Địa chỉ">
+					<br>
+					<span id="addressError" class="error"></span>
+				</div>
+				<a class="form-input" th:href="@{/severlogin}">Đăng nhập</a>
+				<br>
+				<span style="color: red" th:text="${loi.error_user_name}"></span>
+				<input type="submit" value="Tạo tài khoản" class="form-submit">
+			</form>
+		</div>
+	</div>
+</div>
